@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import '../index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faPaperPlane
-} from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import {
   faHtml5,
   faCss3Alt,
@@ -19,35 +17,39 @@ const MyDetails = () => {
   const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
-    const sections = document.querySelectorAll('section[id]');
+    const sections = Array.from(document.querySelectorAll('section[id]'));
     const navbar = document.querySelector('.navbar');
 
-    const scrollHandler = () => {
-      const scrollY = window.pageYOffset;
+    const onScroll = () => {
+      const scrollY = window.scrollY + navbar.offsetHeight + 5;
+      let currentSection = '';
 
       sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute('id');
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
 
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-          setActiveSection(sectionId);
+        if (scrollY >= top && scrollY < top + height) {
+          currentSection = section.getAttribute('id');
         }
       });
 
-      if (scrollY > 80) {
+      setActiveSection(currentSection);
+
+      if (window.scrollY > 80) {
         navbar.classList.add('shrink');
       } else {
         navbar.classList.remove('shrink');
       }
     };
 
-    window.addEventListener('scroll', scrollHandler);
-    return () => window.removeEventListener('scroll', scrollHandler);
+    window.addEventListener('scroll', onScroll);
+    onScroll(); 
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
     <div className={`container ${dark ? 'dark' : ''}`}>
+      
       <header className="navbar">
         <ul className="nav-links">
           {['about', 'projects', 'tech', 'skills', 'contact'].map((id) => (
@@ -63,15 +65,20 @@ const MyDetails = () => {
         </ul>
       </header>
 
+      
       <main>
+        
         <section className="hero">
-          <img
+          <motion.img
             src="/images/photo.jpg"
             alt="Gloria Malik"
             className="profile-img"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.8 }}
           />
           <motion.h1
-            initial={{ opacity: 0, y: -30 }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
@@ -82,39 +89,43 @@ const MyDetails = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 1 }}
           >
-            I design & build beautiful web experiences.
+            I build beautiful web experiences.
           </motion.p>
           <a href="/Gloria-Malik-CV.pdf" download className="cv-btn">
             Download CV 📄
           </a>
         </section>
 
-        <section id="about" className="about">
+        
+        <section id="about" className="about section">
           <div className="about-container">
             <div className="about-image">
               <img src="/images/photo.jpg" alt="Gloria Malik" />
             </div>
             <div className="about-text">
               <h2>About Me</h2>
-<p> Hi, I’m Gloria. A former customer service rep turned front-end developer. My curiosity about how websites work, which has turned into a passion for building them, and now I build responsive, user-friendly interfaces using HTML, CSS, JavaScript, and React.
-My background in customer service taught me how to solve problems, communicate clearly, and stay focused on the user-skills I now apply to every project I work on. I'm always learning and looking for ways to create better, more engaging web experience
- </p>
+              <p> 
+               Hi, I’m Gloria. A former customer service rep turned front-end
+                developer. My curiosity about how websites work, has
+                turned into a passion for building them, and now I build
+                responsive, user-friendly interfaces using HTML, CSS,
+                JavaScript, and React.
+                My background in customer service taught me how to solve problems, communicate clearly,
+                and stay focused on the user-skills I now apply to every project I work on.</p>
               <p>
-                <strong>What I'm good at:</strong> UI layout, writing clean
-                code, and improving user experience.
+                <strong>What I'm good at:</strong> writing clean code, and improving user experience.
               </p>
               <p>
-                <strong>Currently learning:</strong> Advanced JavaScript, React
-                hooks, and accessibility best practices.
+                <strong>Currently learning:</strong> Advanced JavaScript, React hooks, and Next JS.
               </p>
               <p>
-                <strong>Hobbies:</strong> Listening to music, learning design on
-                Dribbble, and writing about my journey.
+                <strong>Hobbies:</strong> Listening to music, upskilling, and decumenting  my  journey.
               </p>
             </div>
           </div>
         </section>
 
+        
         <section id="projects" className="section">
           <h2>Projects</h2>
           <div className="card-grid">
@@ -125,69 +136,57 @@ My background in customer service taught me how to solve problems, communicate c
           </div>
         </section>
 
+        
         <section id="tech" className="section">
           <h2>Tech Stack</h2>
           <div className="badges">
-            {['React', 'CSS', 'Framer Motion', 'Git'].map((tech) => (
-              <span className="badge" key={tech}>
+            {['React', 'CSS', 'Git'].map((tech) => (
+              <span key={tech} className="badge">
                 {tech}
               </span>
             ))}
           </div>
         </section>
 
-        <section id="skills" className="skills">
+        
+        <section id="skills" className="section">
           <h2>Skills</h2>
           <div className="skills-list">
-            <div className="skill">
-              <FontAwesomeIcon icon={faHtml5} size="2x" />
-              <span>HTML</span>
-            </div>
-            <div className="skill">
-              <FontAwesomeIcon icon={faCss3Alt} size="2x" />
-              <span>CSS</span>
-            </div>
-            <div className="skill">
-              <FontAwesomeIcon icon={faJsSquare} size="2x" />
-              <span>JavaScript</span>
-            </div>
-            <div className="skill">
-              <FontAwesomeIcon icon={faReact} size="2x" />
-              <span>React</span>
-            </div>
-            <div className="skill">
-              <FontAwesomeIcon icon={faGitAlt} size="2x" />
-              <span>Git</span>
-            </div>
-            <div className="skill">
-              <FontAwesomeIcon icon={faGithub} size="2x" />
-              <span>GitHub</span>
-            </div>
+            {[faHtml5, faCss3Alt, faJsSquare, faReact, faGitAlt, faGithub].map((icon, index) => (
+              <div className="skill" key={index}>
+                <FontAwesomeIcon icon={icon} size="2x" />
+                <span>{['HTML', 'CSS', 'JavaScript', 'React', 'Git', 'GitHub'][index]}</span>
+              </div>
+            ))}
           </div>
         </section>
 
+        
         <section id="contact" className="section">
           <h2>Contact Me</h2>
-          <p>Please contact me at malikgloria99@gmail.com or through this form</p>
-          <form className="contact-form">
-            <input type="text" placeholder="Your Name" required />
-            <input type="email" placeholder="Email" required />
-            <textarea placeholder="Your Message" rows="4" required></textarea>
-            <button type="submit" className="send-btn" aria-label="Send Message">
+          <p>Please contact me at <a href="mailto:malikgloria99@gmail.com">malikgloria99@gmail.com</a> or through this form:</p>
+          <form className="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input type="email" name="_replyto" placeholder="Email" required />
+            <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+            <button type="submit" className="send-btn">
               <FontAwesomeIcon icon={faPaperPlane} />
             </button>
           </form>
         </section>
 
+        
         <footer className="footer">
           © {new Date().getFullYear()} Gloria Malik. All rights reserved.
         </footer>
       </main>
 
+      
       <button
         onClick={() => setDark(!dark)}
         className="theme-toggle-floating"
-        aria-label="Toggle Theme"
+        aria-label="Toggle Dark Mode"
+        title="Toggle Dark Mode"
       >
         🌙
       </button>

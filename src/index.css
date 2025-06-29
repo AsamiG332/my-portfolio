@@ -5,48 +5,22 @@ body {
   color: #f0f0f0;
   background: linear-gradient(to bottom, #2a2a2a 0%, #000000 100%);
   background-attachment: fixed;
-  background-size: cover;
   background-repeat: no-repeat;
   transition: background 0.3s, color 0.3s;
   scroll-behavior: smooth;
 }
 
 .container {
-  transition: background-color 0.3s ease, color 0.3s ease;
   background-color: #ffffff;
   color: #000000;
   min-height: 100vh;
   position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container.dark {
   background-color: #121212;
   color: #ffffff;
-}
-
-
-.theme-toggle-floating {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 999;
-  background-color: #444;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  font-size: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.theme-toggle-floating:hover {
-  background-color: #666;
-}
-
-.moon-icon {
-  color: #555;
 }
 
 
@@ -73,22 +47,10 @@ body {
   background: #333;
 }
 
-.logo {
-  font-weight: bold;
-  font-size: 1.2rem;
-  margin-right: auto;
-  color: inherit;
-}
-
-
 .nav-links {
   list-style: none;
   display: flex;
   gap: 1rem;
-}
-
-.nav-links li {
-  display: inline-block;
 }
 
 .nav-links a {
@@ -96,7 +58,7 @@ body {
   color: inherit;
   padding: 0.4rem 0.6rem;
   border-radius: 8px;
-  transition: all 0.3s ease-in-out;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 .nav-links a.active {
@@ -105,19 +67,18 @@ body {
   font-weight: bold;
 }
 
-
 main {
   padding-top: 100px;
 }
 
 .hero {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 2rem;
   text-align: center;
+  min-height: 100vh;
 }
 
 .profile-img {
@@ -138,8 +99,9 @@ main {
   background: #5c728a;
   color: white;
   padding: 0.6rem 1.2rem;
-  border-radius: 8px;
   margin-top: 1rem;
+  border-radius: 8px;
+  text-decoration: none;
   display: inline-block;
 }
 
@@ -149,6 +111,45 @@ main {
   max-width: 1000px;
   margin: 0 auto;
   text-align: center;
+}
+
+.about {
+  padding: 4rem 2rem;
+  background: #f9f9f9;
+}
+
+.dark .about {
+  background: #1c1c1c;
+}
+
+.about-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-image img {
+  width: 250px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.about-text {
+  flex: 1;
+  max-width: 600px;
+  text-align: left;
+}
+
+.about-text h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.about-text p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
 }
 
 
@@ -188,50 +189,9 @@ main {
 }
 
 .dark .badge {
-  background: #333366;
+ 	background: #333366;
   color: #ccc;
 }
-
-
-.about {
-  padding: 4rem 2rem;
-  background: #f9f9f9;
-}
-
-.dark .about {
-  background: #1c1c1c;
-}
-
-.about-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  align-items: center;
-  justify-content: center;
-}
-
-.about-image img {
-  width: 250px;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.about-text {
-  flex: 1;
-  max-width: 600px;
-}
-
-.about-text h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.about-text p {
-  margin-bottom: 1rem;
-  line-height: 1.6;
-}
-
 
 .skills {
   padding: 4rem 2rem;
@@ -257,16 +217,14 @@ main {
   font-size: 1.2rem;
 }
 
-.skill i {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  color: #a6b1be;
+.skill span {
+  margin-top: 0.5rem;
 }
 
-.dark .skill i {
-  color: #3d4348;
-}
 
+#contact p {
+  margin-bottom: 1rem;
+}
 
 .contact-form {
   display: flex;
@@ -282,6 +240,7 @@ main {
   border-radius: 6px;
   border: 1px solid #ccc;
   font-size: 1rem;
+  resize: vertical;
 }
 
 .send-btn {
@@ -301,14 +260,9 @@ main {
   height: 40px;
 }
 
-.send-btn i {
-  font-size: 1.1rem;
-}
-
 .send-btn:hover {
   background-color: #777;
 }
-
 
 
 .footer {
@@ -316,4 +270,25 @@ main {
   padding: 2rem;
   font-size: 0.8rem;
   color: #888;
+}
+
+
+.theme-toggle-floating {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.theme-toggle-floating:hover {
+  background-color: #666;
 }
