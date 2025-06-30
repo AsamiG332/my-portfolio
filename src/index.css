@@ -292,3 +292,22 @@ main {
 .theme-toggle-floating:hover {
   background-color: #666;
 }
+
+
+.cv-and-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.icon-link {
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.icon-link:hover {
+  transform: scale(1.2);
+  color: #0077b5; 
+}

@@ -9,7 +9,8 @@ import {
   faJsSquare,
   faReact,
   faGitAlt,
-  faGithub
+  faGithub,
+  faLinkedin
 } from '@fortawesome/free-brands-svg-icons';
 
 const MyDetails = () => {
@@ -43,13 +44,12 @@ const MyDetails = () => {
     };
 
     window.addEventListener('scroll', onScroll);
-    onScroll(); 
+    onScroll();
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
     <div className={`container ${dark ? 'dark' : ''}`}>
-      
       <header className="navbar">
         <ul className="nav-links">
           {['about', 'projects', 'tech', 'skills', 'contact'].map((id) => (
@@ -65,9 +65,7 @@ const MyDetails = () => {
         </ul>
       </header>
 
-      
       <main>
-        
         <section className="hero">
           <motion.img
             src="/images/photo.jpg"
@@ -91,12 +89,33 @@ const MyDetails = () => {
           >
             I build beautiful web experiences.
           </motion.p>
-          <a href="/Gloria-Malik-CV.pdf" download className="cv-btn">
-            Download CV 📄
-          </a>
+          <div className="cv-and-links">
+            <a href="/Gloria-Malik-CV.pdf" download className="cv-btn">
+              Download CV 📄
+            </a>
+
+            <a
+              href="https://github.com/your-github-AsamiG332"
+              className="icon-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              <FontAwesomeIcon icon={faGithub} size="2x" />
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/gloriamalik/"
+              className="icon-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <FontAwesomeIcon icon={faLinkedin} size="2x" />
+            </a>
+          </div>
         </section>
 
-        
         <section id="about" className="about section">
           <div className="about-container">
             <div className="about-image">
@@ -104,28 +123,31 @@ const MyDetails = () => {
             </div>
             <div className="about-text">
               <h2>About Me</h2>
-              <p> 
-               Hi, I’m Gloria. A former customer service rep turned front-end
-                developer. My curiosity about how websites work, has
-                turned into a passion for building them, and now I build
-                responsive, user-friendly interfaces using HTML, CSS,
-                JavaScript, and React.
-                My background in customer service taught me how to solve problems, communicate clearly,
-                and stay focused on the user-skills I now apply to every project I work on.</p>
               <p>
-                <strong>What I'm good at:</strong> writing clean code, and improving user experience.
+                Hi, I’m Gloria. A former customer service rep turned front-end
+                developer. My curiosity about how websites work has turned into
+                a passion for building them, and now I build responsive,
+                user-friendly interfaces using HTML, CSS, JavaScript, and React.
+                My background in customer service taught me how to solve
+                problems, communicate clearly, and stay focused on the user—
+                skills I now apply to every project I work on.
               </p>
               <p>
-                <strong>Currently learning:</strong> Advanced JavaScript, React hooks, and Next JS.
+                <strong>What I'm good at:</strong> writing clean code, and
+                improving user experience.
               </p>
               <p>
-                <strong>Hobbies:</strong> Listening to music, upskilling, and decumenting  my  journey.
+                <strong>Currently learning:</strong> Advanced JavaScript, React
+                hooks, and Next.js.
+              </p>
+              <p>
+                <strong>Hobbies:</strong> Listening to music, upskilling, and
+                documenting my journey.
               </p>
             </div>
           </div>
         </section>
 
-        
         <section id="projects" className="section">
           <h2>Projects</h2>
           <div className="card-grid">
@@ -136,7 +158,6 @@ const MyDetails = () => {
           </div>
         </section>
 
-        
         <section id="tech" className="section">
           <h2>Tech Stack</h2>
           <div className="badges">
@@ -148,40 +169,53 @@ const MyDetails = () => {
           </div>
         </section>
 
-        
         <section id="skills" className="section">
           <h2>Skills</h2>
           <div className="skills-list">
-            {[faHtml5, faCss3Alt, faJsSquare, faReact, faGitAlt, faGithub].map((icon, index) => (
-              <div className="skill" key={index}>
-                <FontAwesomeIcon icon={icon} size="2x" />
-                <span>{['HTML', 'CSS', 'JavaScript', 'React', 'Git', 'GitHub'][index]}</span>
-              </div>
-            ))}
+            {[faHtml5, faCss3Alt, faJsSquare, faReact, faGitAlt, faGithub].map(
+              (icon, index) => (
+                <div className="skill" key={index}>
+                  <FontAwesomeIcon icon={icon} size="2x" />
+                  <span>
+                    {['HTML', 'CSS', 'JavaScript', 'React', 'Git', 'GitHub'][index]}
+                  </span>
+                </div>
+              )
+            )}
           </div>
         </section>
 
-        
         <section id="contact" className="section">
           <h2>Contact Me</h2>
-          <p>Please contact me at <a href="mailto:malikgloria99@gmail.com">malikgloria99@gmail.com</a> or through this form:</p>
-          <form className="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+          <p>
+            Please contact me at{' '}
+            <a href="mailto:malikgloria99@gmail.com">malikgloria99@gmail.com</a>{' '}
+            or through this form:
+          </p>
+          <form
+            className="contact-form"
+            action="https://"
+            method="POST"
+          >
             <input type="text" name="name" placeholder="Your Name" required />
             <input type="email" name="_replyto" placeholder="Email" required />
-            <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+            <textarea
+              name="message"
+              placeholder="Your Message"
+              rows="4"
+              required
+            ></textarea>
             <button type="submit" className="send-btn">
               <FontAwesomeIcon icon={faPaperPlane} />
             </button>
           </form>
         </section>
 
-        
         <footer className="footer">
           © {new Date().getFullYear()} Gloria Malik. All rights reserved.
         </footer>
       </main>
 
-      
       <button
         onClick={() => setDark(!dark)}
         className="theme-toggle-floating"
